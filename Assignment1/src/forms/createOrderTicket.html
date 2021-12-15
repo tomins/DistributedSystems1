@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Form to create a new Order Ticket</title>
+ </head>
+<body>
+    <form action="http://localhost:8080/Assignment1/rest/create/orders" method="POST">
+    <label for="Customername">Customer Name</label>
+    <select id="Customername" name="Customername">
+    <?php
+$servername = "127.0.0.1:3306";
+$username = "root";
+$password = "root";
+$dbname = "dt3542021";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql1 = "SELECT name FROM Customer";
+$result1 = $conn->query($sql1);
+
+if ($result1->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "<option value=name: " . $row["name"]. ""</option><br>";
+  }
+} else {
+  echo "0 results";
+}
+$conn->close();
+	?>
+	</select>
+        <label for="MenuItems">Menu Items</label>
+    <select id="MenuItems" name="MenuItems" size="4" multiple>
+    <?php
+$servername = "127.0.0.1:3306";
+$username = "root";
+$password = "root";
+$dbname = "dt3542021";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql1 = "SELECT name FROM MenuItem";
+$result1 = $conn->query($sql1);
+
+if ($result1->num_rows > 0) {
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "<option value=name: " . $row["name"]. ""</option><br>";
+  }
+} else {
+  echo "0 results";
+	}
+	$conn->close();
+	?>
+    </select>
+    
+    <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
